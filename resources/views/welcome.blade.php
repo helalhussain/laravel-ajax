@@ -19,35 +19,25 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
-          <form action="{{ route('product.store') }}"  method="POST">
+          <form action="{{ route('product.store') }}" id="addForm" method="POST">
             @csrf
-            @if(Session::has('success'))
-            <p>{{ Session::get('success') }}</p>
-            @endif
-            @if(Session::has('fail'))
-            <p>{{ Session::get('fail') }}</p>
-            @endif
 
           <div class="modal-body">
             <div class="errorMsgContainer"></div>
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Name</label>
-                <input type="text"  name="name" class="form-control name @error('name')
-                    is-invalid
-                @enderror" id="names recipient-name">
+                <input type="text"  name="name" class="form-control name" id="names recipient-name">
               </div>
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Price</label>
-                <input type="text" name="price" class="form-control price @error('price')
-                    is-invalid
-                @enderror" id="price recipient-name">
+                <input type="text" name="price" class="form-control price" id="price recipient-name">
               </div>
 
 
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary add_product">Insert</button>
+            <button type="submit" class="btn btn-primary add_product">Insert</button>
           </div>
         </form>
         </div>
@@ -55,12 +45,13 @@
     </div>
     <!---Model End---->
     <div class="table-responsive mt-2">
-        <table class="table table">
+        <table class="table table-light p-2">
             <thead>
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Name</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Edit</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,10 +60,59 @@
                 <td scope="row">{{ $product->id }}</td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->price }}</td>
+                <td>
+                    <a  class="btn btn-success edit_product_model" data-bs-toggle="modal"
+                    data-id="{{ $product->id }} " data-name="{{ $product->name }}"
+                         data-price="{{ $product->price }}"
+                    data-bs-target="#updateModal"  data-bs-whatever="@getbootstrap">Edit</a>
+
+                    <div class="modal fade bg-dark" id="updateModal" tabindex="-1"
+                     aria-labelledby="editModalLabel"
+                     aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="editModalLabel">Edit</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+
+                          <form action="{{ route('product.update') }}" id="updateForm" method="POST">
+                            @csrf
+
+                          <div class="modal-body">
+                            <div class="errorMsgContainer"></div>
+                            <input type="hidden"
+                                class="edit_id" id="up_id" placeholder="Name"
+                                id="up_name">
+                              <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Name</label>
+                                <input type="text"
+                                name="name" class="form-control edit_name" placeholder="Name"
+                                id="up_name">
+                              </div>
+                              <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Price</label>
+                                <input type="text" id="up_price"
+                                name="price" class="form-control edit_price"
+                                placeholder="Price">
+                              </div>
+
+
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary update_product">Update</button>
+                          </div>
+                        </form>
+                        </div>
+                      </div>
+                    </div>
+                </td>
             </tr>
                @endforeach
             </tbody>
         </table>
+        {{ $products->links() }}
     </div>
 
 </div>

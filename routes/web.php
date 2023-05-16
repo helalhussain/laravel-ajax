@@ -18,3 +18,4 @@ use App\Http\Controllers\ProductController;
 // });
 Route::get('/',[ProductController::class,'index']);
 Route::post('/',[ProductController::class,'store'])->name('product.store');
+ Route::post('/update-product',[ProductController::class,'update'])->name('product.update');
