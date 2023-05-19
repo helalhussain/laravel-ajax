@@ -71,16 +71,23 @@ integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="ano
                 success:function(data){
                     $('#output').text(data.res);
                     $('#btnSubmit').prop("disabled",false);
+                    $("input[type='text']").val('');
+                    $("input[type='email']").val('');
+                    $("input[type='password']").val('');
+                    $("input[type='file']").val('');
 
                 },error:function(e){
                     $('#output').text(e.responseText);
                     // console.log(e.responseText)
                     $('#btnSubmit').prop("disabled",false);
 
+
                 }
             });
 
         });
+
+
     });
 </script>
 @endsection

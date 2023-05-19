@@ -10,11 +10,12 @@ class UserController extends Controller
 {
     public function user()
      {
-        if(request()->ajax()){
-            return DataTables::eloquent(User::query())->make(true);
-        }
-        //   $users = User::paginate(10);
-         return view('user');
+        // if(request()->ajax()){
+        //     return DataTables::eloquent(User::query())->make(true);
+        // }
+           $users = User::all();
+           return view('user',($users));
+        //  return response()->json(['users'=>$users]);
     }
 
     public function addUser()

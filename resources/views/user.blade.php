@@ -14,17 +14,25 @@
                     <th scope="col">Edit</th>
                 </tr>
             </thead>
-            <tbody>
-                @php
-                    $users = App\Models\User::all();
-                @endphp
-                @foreach ($users as $user)
+            <div class="userTable"></div>
+            @php
+            $users = App\Models\User::all();
+       @endphp
+            <tbody id="">
+
+                <div class="userTable">
+
+                </div>
+<div class="user-table">
+
+</div>
+                {{-- @foreach ($users as $user)
                     <tr>
                         <th>{{ $user->id }}</th>
                         <th>{{ $user->name }}</th>
                         <th>{{ $user->email }}</th>
                     </tr>
-                @endforeach
+                @endforeach --}}
 
             </tbody>
         </table>
@@ -45,23 +53,29 @@ integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="ano
 
 <script>
     $(document).ready(function(){
-        $('#example').DataTable({
-            processing:true,
-            serverSide:true,
-            ajax:{
-                url:'{{ URL::to('/user') }}'
-            },columns:
-            [
-                {
-                    data:'name',
-                    name:'name',
-                },
-                {
-                    data:'email',
-                    emal:'email'
+        $.ajax({
+            type:"GET",
+            url:"{{ route('user') }}",
+            success:function(data){
+                console.log(data);
+                if(data.users.length >0){
+                    for(let i=0;i<data.users.length;i++){
+                        $("#user-table").append(`
+                        <tr>
+                        <th>`+ (i+1) +`</th>
+                        <th>`+(data.users[i]['name'])+`</th>
+                        <th>`+(data.users[i]['email'])+`</th>
+                        </tr>
+                        `);
+                    }
+                }else{
+                    $("#userTable").append("<span>Data not Found </span>");
                 }
-            ]
-        })
+
+            }.error:function(err){
+                console.log(err.responseText);
+            }
+        });
     })
 </script>
 @endsection
