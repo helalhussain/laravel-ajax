@@ -21,3 +21,5 @@ Route::get('/',[ProductController::class,'index']);
 Route::post('/',[ProductController::class,'store'])->name('product.store');
  Route::post('/update-product',[ProductController::class,'update'])->name('product.update');
  Route::get('/user',[UserController::class,'user']);
+ Route::get('/add-user',[UserController::class,'addUser']);
+ Route::post('/add-user',[UserController::class,'add'])->name('add');

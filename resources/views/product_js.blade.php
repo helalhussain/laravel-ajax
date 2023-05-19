@@ -1,4 +1,7 @@
 <script>
+
+
+
 $(document).ready(function(){
     $(document).on('click','.add_product',function(e){
         e.preventDefault();

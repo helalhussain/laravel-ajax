@@ -4,7 +4,6 @@
 <div class="col-lg-5 mx-auto">
 
     <h2 class="text-center text-success my-3">Laravel Yajra box</h2>
-
     <div class="table-responsive mt-2">
         <table class="table table-light p-2">
             <thead>

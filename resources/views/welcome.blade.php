@@ -51,7 +51,7 @@
                     <th scope="col">No</th>
                     <th scope="col">Name</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,7 +60,8 @@
                 <td scope="row">{{ $product->id }}</td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->price }}</td>
-                <td>
+                <td>{{ $product->price }}</td>
+                {{-- <td>
                     <a  class="btn btn-success edit_product_model" data-bs-toggle="modal"
                     data-id="{{ $product->id }} " data-name="{{ $product->name }}"
                          data-price="{{ $product->price }}"
@@ -107,12 +108,12 @@
                         </div>
                       </div>
                     </div>
-                </td>
+                </td> --}}
             </tr>
                @endforeach
             </tbody>
         </table>
-        {{ $products->links() }}
+        {{-- {{ $products->links() }} --}}
     </div>
 
 </div>

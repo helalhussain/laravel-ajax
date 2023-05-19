@@ -8,7 +8,7 @@ use App\Models\Product;
 class ProductController extends Controller
 {
     public function index(){
-        $products = Product::latest()->paginate(5);
+        $products = Product::all();
         return view('welcome',compact('products'));
     }
     public function store(Request $request){
