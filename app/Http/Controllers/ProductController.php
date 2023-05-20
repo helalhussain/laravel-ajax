@@ -7,9 +7,26 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function index(){
-        $products = Product::all();
-        return view('welcome',compact('products'));
+    public function index(Request $request){
+        if($request->ajax()){
+            // $reslut = Product::where('title','=',$request->search);
+            $data = Product::where('name','LIKE',$request->name.'%')->get();
+            $output = '';
+            if(count($data) > 0){
+                $output ='<ul class="list-group" style="display:block;position:relative;">';
+                foreach($data as $row){
+                   $output .='<li id="set" class="list-group-item" style="cursor:pointer">'.$row->name.'</li>';
+                }
+                $output .= '</ul>';
+            }else{
+                $output .= '<li class="list-form-group">No product found</li>';
+            }
+            return $output;
+        }
+        // $products = Product::all();
+         return view('welcome');
+
+
     }
     public function store(Request $request){
         $request->validate([

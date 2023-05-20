@@ -15,7 +15,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="addModalLabel">New message</h1>
+            <h1 class="modal-title fs-5" id="addModalLabel">Add new product</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
@@ -45,6 +45,14 @@
     </div>
     <!---Model End---->
     <div class="table-responsive mt-2">
+
+        @csrf
+        <input type="text" id="sear_bar" name="name" class="form-control"
+         placeholder="Search...">
+        <div id="search_list">
+
+        </div>
+
         <table class="table table-light p-2">
             <thead>
                 <tr>
@@ -55,12 +63,12 @@
                 </tr>
             </thead>
             <tbody>
-               @foreach ($products as $product)
+               {{-- @foreach ($products as $product)
                <tr class="">
                 <td scope="row">{{ $product->id }}</td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->price }}</td>
-                <td>{{ $product->price }}</td>
+                <td>{{ $product->price }}</td> --}}
                 {{-- <td>
                     <a  class="btn btn-success edit_product_model" data-bs-toggle="modal"
                     data-id="{{ $product->id }} " data-name="{{ $product->name }}"
@@ -109,11 +117,11 @@
                       </div>
                     </div>
                 </td> --}}
-            </tr>
-               @endforeach
+            {{-- </tr> --}}
+               {{-- @endforeach --}}
             </tbody>
         </table>
-        {{-- {{ $products->links() }} --}}
+
     </div>
 
 </div>
@@ -129,4 +137,5 @@ integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="ano
 </script>
 
 @include('product_js');
+@include('search');
 @endsection

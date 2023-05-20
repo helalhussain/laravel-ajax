@@ -17,7 +17,7 @@ use App\Http\Controllers\UserController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/',[ProductController::class,'index']);
+Route::get('/',[ProductController::class,'index'])->name('index');
 Route::post('/',[ProductController::class,'store'])->name('product.store');
  Route::post('/update-product',[ProductController::class,'update'])->name('product.update');
  Route::get('/user',[UserController::class,'user'])->name('user');
