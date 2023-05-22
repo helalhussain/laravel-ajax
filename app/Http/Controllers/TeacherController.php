@@ -17,7 +17,7 @@ class TeacherController extends Controller
     }
     public function store(Request $request){
         $request->validate([
-            'name'=>'required|min:3|max:10',
+            'name'=>'required|min:3|max:20',
             'title'=>'required',
             'institute'=>'required'
         ]);
