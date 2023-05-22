@@ -54,7 +54,14 @@ integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="ano
 </script>
 
 <script>
-
+function clearData(){
+                $('#name').val('');
+                $('#title').val('');
+                $('#institute').val('');
+                $('.nameError').text('');
+                $('.titleError').text('');
+                $('.instituteError').text('');
+}
 
     function addTeacher(){
       var name=  $('#name').val();
@@ -68,13 +75,8 @@ integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="ano
             data:{name:name,title:title,institute:institute},
             url:"{{ route('teacher.store') }}",
             success:function(data){
-                console.log('Successfully create');
-                $('#name').val('');
-                $('#title').val('');
-                $('#institute').val('');
-                $('.nameError').text('');
-                $('.titleError').text('');
-                $('.instituteError').text('');
+                alert('success');
+                clearData()
             },error:function(error){
                 $('.nameError').text(error.responseJSON.errors.name);
                 $('.titleError').text(error.responseJSON.errors.title);
